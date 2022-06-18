@@ -2,14 +2,19 @@
 #include <stdlib.h>
 #include <time.h>
 
-int balance, target, startBet, bet, choice;
+#include "lang/turkish.h"
+
+int balance;
+int target;
+int startBet;
+int bet;
+int choice;
+
 char input[10];
 
 void initial();
 void showAmounts();
 void spin();
-void winMessage();
-void loseMessage();
 
 int main() {
     initial();
@@ -22,9 +27,9 @@ int main() {
     showAmounts();
 
     if (balance >= target) {
-        winMessage();
+        puts(YOU_WIN);
     } else {
-        loseMessage();
+        puts(YOU_LOST);
     }
 
     return 0;
@@ -34,25 +39,25 @@ void initial() {
     srand(time(NULL));
 
     do {
-        printf("Bakiyeniz (TL)\t: ");
+        printf("%s\t: ", YOUR_BALANCE);
         scanf("%s", input);
         balance = atoi(input);
     } while (balance < 1);
 
     do {
-        printf("Hedefiniz (TL)\t: ");
+        printf("%s\t: ", YOUR_TARGET);
         scanf("%s", input);
         target = atoi(input);
     } while (target < 1);
     
     do {
-        printf("Başlangıç (TL)\t: ");
+        printf("%s\t: ", START_BALANCE);
         scanf("%s", input);
         startBet = atoi(input);
     } while (!startBet);
 
     do {
-        printf("\nTek\t\t(1)\nÇift\t\t(2)\nSeçiminiz\t:");
+        printf("\n%s\t\t(1)\n%s\t\t(2)\n%s\t:", ODD, EVEN, YOUR_CHOICE);
         scanf("%s", input);
         choice = atoi(input);
     } while (choice != 1 && choice != 2);
@@ -61,7 +66,7 @@ void initial() {
 }
 
 void showAmounts() {
-    printf("\nBakiye\t:%d\nBet\t:%d\n", balance, bet);
+    printf("\n%s\t:%d\n%s\t:%d\n", BALANCE, balance, BET, bet);
 }
 
 void spin() {
@@ -69,35 +74,26 @@ void spin() {
     
     number = rand() % 36 + 1;
 
-    printf("\nBekleyiniz...\n");
+    printf("\n%s\n", WAIT);
 
     for (int i = 1; i <= 1000000000; i++);
 
-    printf("\nGelen sayı: %d\n", number);
+    printf("\n%s%d\n", INCOMING_NUMBER, number);
 
     if (number % 2 == choice) {
         balance += bet;
         bet = startBet;
-        puts("İyisin :)");
+        puts(LUCKY);
     } else {
         balance -= bet;
         bet *= 2;
         if (balance > bet) {
-            puts("Sıkıntı yok beti arttırıyorum ;)");
+            puts(UNLUCKY);
         } else if (balance > 0) {
             bet = balance;
-            puts("Durum kritik :(");
+            puts(CRITICAL);
         } else {
-            puts(":(");
+            puts(SORRY);
         }
     }
 }
-
-void winMessage() {
-    puts("\n+++Kazandın+++");
-}
-
-void loseMessage() {
-    puts("\n---Kaybettin---");
-}
-
