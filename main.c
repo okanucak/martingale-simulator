@@ -4,6 +4,9 @@
 
 #include "lang/turkish.h"
 
+const int ODD_VALUE = 1;
+const int EVEN_VALUE = 0;
+
 int balance;
 int target;
 int startBet;
@@ -57,10 +60,10 @@ void initial() {
     } while (!startBet);
 
     do {
-        printf("\n%s\t\t(1)\n%s\t\t(2)\n%s\t:", ODD, EVEN, YOUR_CHOICE);
+        printf("\n%s\t\t(%d)\n%s\t\t(%d)\n%s\t:", ODD, ODD_VALUE, EVEN, EVEN_VALUE, YOUR_CHOICE);
         scanf("%s", input);
         choice = atoi(input);
-    } while (choice != 1 && choice != 2);
+    } while (choice != ODD_VALUE && choice != EVEN_VALUE);
 
     bet = startBet;
 }
@@ -76,7 +79,7 @@ void spin() {
 
     printf("\n%s\n", WAIT);
 
-    for (int i = 1; i <= 1000000000; i++);
+    for (int i = 1; i <= 2000000000; i++);
 
     printf("\n%s%d\n", INCOMING_NUMBER, number);
 
@@ -97,3 +100,4 @@ void spin() {
         }
     }
 }
+
