@@ -13,20 +13,48 @@ int startBet;
 int bet;
 int choice;
 
-char input[10];
-
 void initial();
+void run();
+void finitial();
+void inputAmount(int *amount, char message[255]);
+void inputChoice();
 void showAmounts();
 void spin();
+int getNumber();
+
 
 int main() {
-    initial();
 
+    initial();
+    
+    run();
+    
+    finitial();
+    
+    return 0;
+}
+
+
+void initial() {
+    srand(time(NULL));
+
+    inputAmount(&balance, YOUR_BALANCE);
+    inputAmount(&target, YOUR_TARGET);
+    inputAmount(&startBet, START_BALANCE);
+
+    inputChoice();
+
+    bet = startBet;
+}
+
+void run() {
     while (balance > 0 && balance < target) {
         showAmounts();
         spin();
     }
+}
 
+void finitial() {
     showAmounts();
 
     if (balance >= target) {
@@ -34,54 +62,16 @@ int main() {
     } else {
         puts(YOU_LOST);
     }
-
-    return 0;
-}
-
-void initial() {
-    srand(time(NULL));
-
-    do {
-        printf("%s\t: ", YOUR_BALANCE);
-        scanf("%s", input);
-        balance = atoi(input);
-    } while (balance < 1);
-
-    do {
-        printf("%s\t: ", YOUR_TARGET);
-        scanf("%s", input);
-        target = atoi(input);
-    } while (target < 1);
-    
-    do {
-        printf("%s\t: ", START_BALANCE);
-        scanf("%s", input);
-        startBet = atoi(input);
-    } while (!startBet);
-
-    do {
-        printf("\n%s\t\t(%d)\n%s\t\t(%d)\n%s\t:", ODD, ODD_VALUE, EVEN, EVEN_VALUE, YOUR_CHOICE);
-        scanf("%s", input);
-        choice = atoi(input);
-    } while (choice != ODD_VALUE && choice != EVEN_VALUE);
-
-    bet = startBet;
-}
-
-void showAmounts() {
-    printf("\n%s\t:%d\n%s\t:%d\n", BALANCE, balance, BET, bet);
 }
 
 void spin() {
-    int number;
-    
-    number = rand() % 36 + 1;
+    int number = getNumber();
 
     printf("\n%s\n", WAIT);
 
     for (int i = 1; i <= 2000000000; i++);
 
-    printf("\n%s%d\n", INCOMING_NUMBER, number);
+    printf("\n%s: %d\n", INCOMING_NUMBER, number);
 
     if (number % 2 == choice) {
         balance += bet;
@@ -99,5 +89,33 @@ void spin() {
             puts(SORRY);
         }
     }
+}
+
+void inputAmount(int *amount, char message[255]) {
+    char input[10];
+
+    do {
+        printf("%s\t: ", message);
+        scanf("%s", input);
+        *amount = atoi(input);
+    } while (*amount < 1);
+}
+
+void showAmounts() {
+    printf("\n%s\t:%d\n%s\t:%d\n", BALANCE, balance, BET, bet);
+}
+
+void inputChoice() {
+    char input[10];
+
+    do {
+        printf("\n%s\t\t(%d)\n%s\t\t(%d)\n%s\t:", ODD, ODD_VALUE, EVEN, EVEN_VALUE, YOUR_CHOICE);
+        scanf("%s", input);
+        choice = atoi(input);
+    } while (choice != ODD_VALUE && choice != EVEN_VALUE);
+}
+
+int getNumber() {
+    return rand() % 36 + 1;
 }
 

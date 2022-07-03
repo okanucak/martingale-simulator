@@ -7,7 +7,7 @@
 #define BALANCE             "Bakiye"
 #define BET                 "Bahis"
 #define WAIT                "Bekleyiniz..."
-#define INCOMING_NUMBER     "Gelen sayı: "
+#define INCOMING_NUMBER     "Gelen sayı"
 #define LUCKY               "İyisin :)"
 #define UNLUCKY             "Sıkıntı yok beti arttırıyorum ;)"
 #define CRITICAL            "Durum kritik :("
