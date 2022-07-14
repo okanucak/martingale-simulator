@@ -42,6 +42,10 @@ void initial() {
     inputAmount(&target, YOUR_TARGET);
     inputAmount(&startBet, START_BALANCE);
 
+    if (startBet > balance) {
+        startBet = balance;
+    }
+
     inputChoice();
 
     bet = startBet;
