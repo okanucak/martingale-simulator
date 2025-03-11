@@ -4,8 +4,9 @@
 
 #include "lang/turkish.h"
 
+const int ZERO_VALUE = 0;
 const int ODD_VALUE = 1;
-const int EVEN_VALUE = 0;
+const int EVEN_VALUE = 2;
 
 int balance;
 int target;
@@ -71,13 +72,17 @@ void finitial() {
 void spin() {
     int number = getNumber();
 
-    printf("\n%s\n", WAIT);
+    printf("\n%s\n\n", WAIT);
 
     for (int i = 1; i <= 2000000000; i++);
 
-    printf("\n%s: %d\n", INCOMING_NUMBER, number);
+    if (number != ZERO_VALUE) {
+        printf("%s:\t%d\n", INCOMING_NUMBER, number);
+    } else {
+        printf("%s:\t%s\n", INCOMING_NUMBER, ZERO_TEXT);
+    }
 
-    if (number % 2 == choice) {
+    if (number != ZERO_VALUE && number % 2 == choice % 2) {
         balance += bet;
         bet = startBet;
         puts(LUCKY);
@@ -106,7 +111,7 @@ void inputAmount(int *amount, char message[255]) {
 }
 
 void showAmounts() {
-    printf("\n%s\t:%d\n%s\t:%d\n", BALANCE, balance, BET, bet);
+    printf("\n%s\t:\t%d\n%s\t:\t%d\n", BALANCE, balance, BET, bet);
 }
 
 void inputChoice() {
@@ -120,6 +125,6 @@ void inputChoice() {
 }
 
 int getNumber() {
-    return rand() % 36 + 1;
+    return rand() % 37;
 }
 

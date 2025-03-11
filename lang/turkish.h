@@ -14,3 +14,4 @@
 #define SORRY               ":("
 #define YOU_WIN             "+++Kazandın+++"
 #define YOU_LOST            "---Kaybettin---"
+#define ZERO_TEXT           "Sıfır"
