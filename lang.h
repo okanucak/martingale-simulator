@@ -50,8 +50,8 @@ void setMessages() {
     trMessages.BET = "Bahis";
     enMessages.BET = "Bet";
 
-    trMessages.WAIT = "Bekleyiniz...";
-    enMessages.WAIT = "Wait...";
+    trMessages.WAIT = "Dönüyor...";
+    enMessages.WAIT = "Spinning...";
 
     trMessages.INCOMING_NUMBER = "Gelen sayı";
     enMessages.INCOMING_NUMBER = "Incoming number";
