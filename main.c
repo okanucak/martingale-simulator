@@ -3,6 +3,7 @@
 #include <time.h>
 #include <string.h>
 
+#include "studio.h"
 #include "lang.h"
 #include "marsi.h"
 

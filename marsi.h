@@ -46,7 +46,8 @@ void spin() {
     printf("%s\n", lang.WAIT);
 
     for (long i = 1; i <= 9999999999; i++);
-    int number = rand() % 37;
+    
+    int number = randomdNumber(0, 36);
 
     int result = 0;
     if (number != ZERO_VALUE) {
