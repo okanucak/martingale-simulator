@@ -22,6 +22,12 @@ struct messages
 struct messages trMessages;
 struct messages enMessages;
 
+struct messages langs[2];
+struct messages lang;
+
+const int TR = 0;
+const int EN = 1;
+
 void setMessages() {
     trMessages.YOUR_BALANCE = "Bakiyeniz";
     enMessages.YOUR_BALANCE = "Your Balance";
@@ -73,4 +79,11 @@ void setMessages() {
 
     trMessages.YOU_LOST = "---Kaybettin---";
     enMessages.YOU_LOST = "---You lost---";
+
+    langs[TR] = trMessages;
+    langs[EN] = enMessages;
+}
+
+void setLang(int langIndex) {
+    lang = langs[langIndex];
 }

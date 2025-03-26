@@ -1,17 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-
-#include "lang.h"
-
-void marsi(char *language);
+void marsi();
 void spin();
 void inputAmount(int *amount, char *message);
 void inputChoice();
 void showAmounts();
-
-struct messages lang;
 
 const int ZERO_VALUE = 0;
 const int ODD_VALUE = 1;
@@ -23,13 +14,7 @@ int startBet;
 int bet;
 int choice;
 
-void marsi(char *language) {
-    setMessages();
-    lang = trMessages;
-    if (strcmp(language, "en") == 0) {
-        lang = enMessages;
-    }
-
+void marsi() {
     inputAmount(&balance, lang.YOUR_BALANCE);
     inputAmount(&target, lang.YOUR_TARGET);
     inputAmount(&startBet, lang.START_BALANCE);
