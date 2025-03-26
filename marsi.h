@@ -2,7 +2,6 @@ void marsi();
 void spin();
 void inputAmount(int *amount, char *message);
 void inputChoice();
-void showAmounts();
 
 const int ZERO_VALUE = 0;
 const int ODD_VALUE = 1;
@@ -17,7 +16,7 @@ int choice;
 void marsi() {
     inputAmount(&balance, lang.YOUR_BALANCE);
     inputAmount(&target, lang.YOUR_TARGET);
-    inputAmount(&startBet, lang.START_BALANCE);
+    inputAmount(&startBet, lang.MIN_BET);
 
     inputChoice();
 
@@ -28,52 +27,56 @@ void marsi() {
     bet = startBet;
 
     while (balance > 0 && balance < target) {
-        showAmounts();
         spin();
     }
 
-    showAmounts();
-
     if (balance >= target) {
-        puts(lang.YOU_WIN);
+        printf("\n%s\n", lang.YOU_WIN);
     } else {
-        puts(lang.YOU_LOST);
+        printf("\n%s\n", lang.YOU_LOST);
     }
 }
 
 void spin() {
-    printf("\n%s\n\n", lang.WAIT);
+    balance -= bet;
 
-    for (int i = 1; i <= 1000000000; i++);
+    printf("\n");
+    printf("%s\t:%d\n", lang.YOUR_BALANCE, balance);
+    printf("%s\t\t:%d\n", lang.BET, bet);
+    printf("%s\n", lang.WAIT);
+
+    for (long i = 1; i <= 9999999999; i++);
     int number = rand() % 37;
 
+    int result = 0;
     if (number != ZERO_VALUE) {
         printf("%s\t:%d\n", lang.INCOMING_NUMBER, number);
+        if (number % 2 == choice % 2) {
+            result = 1;
+        }
     } else {
         printf("%s:\t%s\n", lang.INCOMING_NUMBER, lang.ZERO_TEXT);
     }
 
-    if (number != ZERO_VALUE && number % 2 == choice % 2) {
-        balance += bet;
+    if (result) {
+        balance += bet * 2;
         bet = startBet;
-        puts(lang.LUCKY);
+        printf("%s\n", lang.LUCKY);
     } else {
-        balance -= bet;
         bet *= 2;
         if (balance > bet) {
-            puts(lang.UNLUCKY);
+            printf("%s\n", lang.UNLUCKY);
         } else if (balance > 0) {
             bet = balance;
-            puts(lang.CRITICAL);
+            printf("%s\n", lang.CRITICAL);
         } else {
-            puts(lang.SORRY);
+            printf("%s\n", lang.SORRY);
         }
     }
 }
 
 void inputAmount(int *amount, char *message) {
     char input[10];
-
     do {
         printf("%s\t:", message);
         scanf("%s", input);
@@ -83,7 +86,6 @@ void inputAmount(int *amount, char *message) {
 
 void inputChoice() {
     char input[10];
-
     do {
         printf("%s\t\t(%d)\n", lang.ODD_TEXT, ODD_VALUE);
         printf("%s\t\t(%d)\n", lang.EVEN_TEXT, EVEN_VALUE);
@@ -91,11 +93,4 @@ void inputChoice() {
         scanf("%s", input);
         choice = atoi(input);
     } while (choice != ODD_VALUE && choice != EVEN_VALUE);
-}
-
-void showAmounts() {
-    printf("\n");
-    printf("%s\t:%d\n", lang.YOUR_TARGET, target);
-    printf("%s\t\t:%d\n", lang.BALANCE, balance);
-    printf("%s\t\t:%d\n", lang.BET, bet);
 }

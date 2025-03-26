@@ -2,12 +2,11 @@ struct messages
 {
     char *YOUR_BALANCE;
     char *YOUR_TARGET;
-    char *START_BALANCE;
+    char *MIN_BET;
     char *ZERO_TEXT;
     char *ODD_TEXT;
     char *EVEN_TEXT;
     char *YOUR_CHOICE;
-    char *BALANCE;
     char *BET;
     char *WAIT;
     char *INCOMING_NUMBER;
@@ -35,8 +34,8 @@ void setMessages() {
     trMessages.YOUR_TARGET = "Hedefiniz";
     enMessages.YOUR_TARGET = "Your Target";
 
-    trMessages.START_BALANCE = "Başlangıç";
-    enMessages.START_BALANCE = "Starting";
+    trMessages.MIN_BET = "Minimum Bahis";
+    enMessages.MIN_BET = "Minimum Bet";
 
     trMessages.ZERO_TEXT = "Sıfır";
     enMessages.ZERO_TEXT = "Zero";
@@ -49,9 +48,6 @@ void setMessages() {
 
     trMessages.YOUR_CHOICE = "Seçiminiz";
     enMessages.YOUR_CHOICE = "Your Choice";
-
-    trMessages.BALANCE = "Bakiye";
-    enMessages.BALANCE = "Balance";
 
     trMessages.BET = "Bahis";
     enMessages.BET = "Bet";
