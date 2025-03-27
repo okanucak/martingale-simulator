@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "studio.h"
+
 void marsi();
 void spin();
 void inputAmount(int *amount, char *message);
