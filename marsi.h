@@ -19,9 +19,9 @@ int bet;
 int choice;
 
 void marsi() {
-    inputAmount(&balance, lang.YOUR_BALANCE);
-    inputAmount(&target, lang.YOUR_TARGET);
-    inputAmount(&startBet, lang.MIN_BET);
+    inputAmount(&balance, lang.dict.YOUR_BALANCE);
+    inputAmount(&target, lang.dict.YOUR_TARGET);
+    inputAmount(&startBet, lang.dict.MIN_BET);
 
     inputChoice();
 
@@ -36,9 +36,9 @@ void marsi() {
     }
 
     if (balance >= target) {
-        printf("\n%s\n", lang.YOU_WIN);
+        printf("\n%s\n", lang.dict.YOU_WIN);
     } else {
-        printf("\n%s\n", lang.YOU_LOST);
+        printf("\n%s\n", lang.dict.YOU_LOST);
     }
 }
 
@@ -46,9 +46,9 @@ void spin() {
     balance -= bet;
 
     printf("\n");
-    printf("%s\t:%d\n", lang.YOUR_BALANCE, balance);
-    printf("%s\t\t:%d\n", lang.BET, bet);
-    printf("%s\n", lang.WAIT);
+    printf("%s\t:%d\n", lang.dict.YOUR_BALANCE, balance);
+    printf("%s\t\t:%d\n", lang.dict.BET, bet);
+    printf("%s\n", lang.dict.WAIT);
 
     for (long i = 1; i <= 9999999999; i++);
     
@@ -56,27 +56,27 @@ void spin() {
 
     int result = 0;
     if (number != ZERO_VALUE) {
-        printf("%s\t:%d\n", lang.INCOMING_NUMBER, number);
+        printf("%s\t:%d\n", lang.dict.INCOMING_NUMBER, number);
         if (number % 2 == choice % 2) {
             result = 1;
         }
     } else {
-        printf("%s:\t%s\n", lang.INCOMING_NUMBER, lang.ZERO_TEXT);
+        printf("%s:\t%s\n", lang.dict.INCOMING_NUMBER, lang.dict.ZERO_TEXT);
     }
 
     if (result) {
         balance += bet * 2;
         bet = startBet;
-        printf("%s\n", lang.LUCKY);
+        printf("%s\n", lang.dict.LUCKY);
     } else {
         bet *= 2;
         if (balance > bet) {
-            printf("%s\n", lang.UNLUCKY);
+            printf("%s\n", lang.dict.UNLUCKY);
         } else if (balance > 0) {
             bet = balance;
-            printf("%s\n", lang.CRITICAL);
+            printf("%s\n", lang.dict.CRITICAL);
         } else {
-            printf("%s\n", lang.SORRY);
+            printf("%s\n", lang.dict.SORRY);
         }
     }
 }
@@ -93,9 +93,9 @@ void inputAmount(int *amount, char *message) {
 void inputChoice() {
     char input[10];
     do {
-        printf("%s\t\t(%d)\n", lang.ODD_TEXT, ODD_VALUE);
-        printf("%s\t\t(%d)\n", lang.EVEN_TEXT, EVEN_VALUE);
-        printf("%s\t:", lang.YOUR_CHOICE);
+        printf("%s\t\t(%d)\n", lang.dict.ODD_TEXT, ODD_VALUE);
+        printf("%s\t\t(%d)\n", lang.dict.EVEN_TEXT, EVEN_VALUE);
+        printf("%s\t:", lang.dict.YOUR_CHOICE);
         scanf("%s", input);
         choice = atoi(input);
     } while (choice != ODD_VALUE && choice != EVEN_VALUE);

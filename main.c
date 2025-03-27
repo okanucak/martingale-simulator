@@ -8,10 +8,11 @@
 int main(int argc, char *argv[]) {
     srand(time(NULL));
 
-    setMessages();
+    initialLangs();
     int langIndex = TR;
     if (argc > 1) {
-        if (strcmp(toLower(argv[1]), "en") == 0) {
+        char *langCode = toLower(argv[1]);
+        if (strcmp(langCode, langs[EN].code) == 0) {
             langIndex = EN;
         }
     }

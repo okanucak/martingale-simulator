@@ -1,4 +1,4 @@
-struct messages
+struct langDict
 {
     char *YOUR_BALANCE;
     char *YOUR_TARGET;
@@ -18,66 +18,79 @@ struct messages
     char *YOU_LOST;
 };
 
-struct messages trMessages;
-struct messages enMessages;
+struct langDict trDict;
+struct langDict enDict;
 
-struct messages langs[2];
-struct messages lang;
+struct language
+{
+    char *code;
+    struct langDict dict;
+};
 
 const int TR = 0;
 const int EN = 1;
 
-void setMessages() {
-    trMessages.YOUR_BALANCE = "Bakiyeniz";
-    enMessages.YOUR_BALANCE = "Your Balance";
+struct language langs[2];
+struct language lang;
 
-    trMessages.YOUR_TARGET = "Hedefiniz";
-    enMessages.YOUR_TARGET = "Your Target";
+void setDicts() {
+    trDict.YOUR_BALANCE = "Bakiyeniz";
+    enDict.YOUR_BALANCE = "Your Balance";
 
-    trMessages.MIN_BET = "Minimum Bahis";
-    enMessages.MIN_BET = "Minimum Bet";
+    trDict.YOUR_TARGET = "Hedefiniz";
+    enDict.YOUR_TARGET = "Your Target";
 
-    trMessages.ZERO_TEXT = "Sıfır";
-    enMessages.ZERO_TEXT = "Zero";
+    trDict.MIN_BET = "Minimum Bahis";
+    enDict.MIN_BET = "Minimum Bet";
 
-    trMessages.ODD_TEXT = "Tek";
-    enMessages.ODD_TEXT = "Odd";
+    trDict.ZERO_TEXT = "Sıfır";
+    enDict.ZERO_TEXT = "Zero";
 
-    trMessages.EVEN_TEXT = "Çift";
-    enMessages.EVEN_TEXT = "Even";
+    trDict.ODD_TEXT = "Tek";
+    enDict.ODD_TEXT = "Odd";
 
-    trMessages.YOUR_CHOICE = "Seçiminiz";
-    enMessages.YOUR_CHOICE = "Your Choice";
+    trDict.EVEN_TEXT = "Çift";
+    enDict.EVEN_TEXT = "Even";
 
-    trMessages.BET = "Bahis";
-    enMessages.BET = "Bet";
+    trDict.YOUR_CHOICE = "Seçiminiz";
+    enDict.YOUR_CHOICE = "Your Choice";
 
-    trMessages.WAIT = "Dönüyor...";
-    enMessages.WAIT = "Spinning...";
+    trDict.BET = "Bahis";
+    enDict.BET = "Bet";
 
-    trMessages.INCOMING_NUMBER = "Gelen sayı";
-    enMessages.INCOMING_NUMBER = "Incoming number";
+    trDict.WAIT = "Dönüyor...";
+    enDict.WAIT = "Spinning...";
 
-    trMessages.LUCKY = "İyisin :)";
-    enMessages.LUCKY = "You are good :)";
+    trDict.INCOMING_NUMBER = "Gelen sayı";
+    enDict.INCOMING_NUMBER = "Incoming number";
 
-    trMessages.UNLUCKY = "Sıkıntı yok beti arttırıyorum ;)";
-    enMessages.UNLUCKY = "No problem, I am increasing the bet ;)";
+    trDict.LUCKY = "İyisin :)";
+    enDict.LUCKY = "You are good :)";
 
-    trMessages.CRITICAL = "Durum kritik :(";
-    enMessages.CRITICAL = "The situation is critical :(";
+    trDict.UNLUCKY = "Sıkıntı yok beti arttırıyorum ;)";
+    enDict.UNLUCKY = "No problem, I am increasing the bet ;)";
 
-    trMessages.SORRY = ":(";
-    enMessages.SORRY = ":(";
+    trDict.CRITICAL = "Durum kritik :(";
+    enDict.CRITICAL = "The situation is critical :(";
 
-    trMessages.YOU_WIN = "+++Kazandın+++";
-    enMessages.YOU_WIN = "+++You won+++";
+    trDict.SORRY = ":(";
+    enDict.SORRY = ":(";
 
-    trMessages.YOU_LOST = "---Kaybettin---";
-    enMessages.YOU_LOST = "---You lost---";
+    trDict.YOU_WIN = "+++Kazandın+++";
+    enDict.YOU_WIN = "+++You won+++";
 
-    langs[TR] = trMessages;
-    langs[EN] = enMessages;
+    trDict.YOU_LOST = "---Kaybettin---";
+    enDict.YOU_LOST = "---You lost---";
+}
+
+void initialLangs() {
+    setDicts();
+
+    langs[TR].code = "tr";
+    langs[TR].dict = trDict;
+
+    langs[EN].code = "en";
+    langs[EN].dict = enDict;
 }
 
 void setLang(int langIndex) {
